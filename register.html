@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .register-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .register-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .register-container .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .register-container .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #555;
+            text-align: right; /* النص على اليمين */
+        }
+
+        .register-container .form-group input,
+        .register-container .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .register-container .form-group input:focus,
+        .register-container .form-group select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .register-container .form-group .input-icon {
+            position: relative;
+        }
+
+        .register-container .form-group .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .register-container .form-group .input-icon input {
+            padding-left: 40px;
+        }
+
+        .register-container .payment-options {
+            margin-bottom: 25px;
+        }
+
+        .register-container .payment-options label {
+            display: block;
+            margin: 12px 0;
+            font-size: 1rem;
+            color: #555;
+            text-align: right; /* النص على اليمين */
+        }
+
+        .register-container .payment-options input[type="radio"] {
+            margin-left: 10px;
+        }
+
+        .register-container .payment-methods {
+            margin-bottom: 25px;
+        }
+
+        .register-container .payment-methods label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #555;
+            text-align: right; /* النص على اليمين */
+        }
+
+        .register-container .payment-methods select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF; /* لون أزرق */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .register-container button:hover {
+            background-color: #005bb5; /* لون أزرق غامق */
+            transform: translateY(-2px);
+        }
+
+        .register-container button i {
+            margin-left: 10px;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 20px;
+            }
+
+            .register-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .register-container .form-group input,
+            .register-container .form-group select {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .register-container button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="register-container">
+        <h2>إنشاء حساب جديد</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="fullName">الاسم بالكامل</label>
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="fullName" placeholder="أدخل اسمك بالكامل" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">العنوان الكامل</label>
+                <div class="input-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="address" placeholder="أدخل عنوانك الكامل" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">رقم التليفون</label>
+                <div class="input-icon">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone" placeholder="أدخل رقم التليفون" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني (اختياري)</label>
+                <div class="input-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+            </div>
+
+            <div class="form-group payment-options">
+                <label>نظام التحصيل:</label>
+                <label>
+                    <input type="radio" name="paymentOption" value="daily" required>
+                    تحصيل يومي (استلام الأموال بعد 48 ساعة بنسبة 2% بحد أقصى 5 جنيه)
+                </label>
+                <label>
+                    <input type="radio" name="paymentOption" value="weekly" required>
+                    تحصيل أسبوعي (استلام الأموال بعد أسبوع بنسبة 1% بحد أقصى 2.30 جنيه)
+                </label>
+            </div>
+
+            <div class="form-group payment-methods">
+                <label for="paymentMethod">وسيلة استلام الأموال:</label>
+                <select id="paymentMethod" required>
+                    <option value="" disabled selected>اختر وسيلة الدفع</option>
+                    <option value="cash">محفظة كاش</option>
+                    <option value="instapay">Instapay</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank">حساب بنكي</option>
+                </select>
+            </div>
+
+            <button type="submit"><i class="fas fa-user-plus"></i> إنشاء الحساب</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const registerForm = document.getElementById("registerForm");
+
+            // تخزين بيانات المستخدمين في localStorage (بيانات دائمة)
+            if (!localStorage.getItem("users")) {
+                localStorage.setItem("users", JSON.stringify([]));
+            }
+
+            // إنشاء حساب جديد
+            registerForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const fullName = document.getElementById("fullName").value;
+                const address = document.getElementById("address").value;
+                const phone = document.getElementById("phone").value;
+                const email = document.getElementById("email").value;
+                const paymentOption = document.querySelector('input[name="paymentOption"]:checked').value;
+                const paymentMethod = document.getElementById("paymentMethod").value;
+
+                const user = {
+                    fullName,
+                    address,
+                    phone,
+                    email,
+                    paymentOption,
+                    paymentMethod
+                };
+
+                // حفظ البيانات في localStorage
+                const users = JSON.parse(localStorage.getItem("users"));
+                users.push(user);
+                localStorage.setItem("users", JSON.stringify(users));
+
+                alert("تم إنشاء الحساب بنجاح!");
+                window.location.href = "dashboard.html"; // الانتقال لواجهة المستخدم
+            });
+        });
+    </script>
+</body>
+</html>

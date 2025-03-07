@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل أوردر جديد - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .order-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .order-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .order-container .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .order-container .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #555;
+            text-align: right; /* النص على اليمين */
+        }
+
+        .order-container .form-group input,
+        .order-container .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-container .form-group input:focus,
+        .order-container .form-group select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .order-container .form-group .input-icon {
+            position: relative;
+        }
+
+        .order-container .form-group .input-icon i {
+            position: absolute;
+            right: 15px; /* الأيقونة على اليمين */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .order-container .form-group .input-icon input {
+            padding-right: 40px; /* تعديل الحشو ليكون على اليمين */
+        }
+
+        .order-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF; /* لون أزرق */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .order-container button:hover {
+            background-color: #005bb5; /* لون أزرق غامق */
+            transform: translateY(-2px);
+        }
+
+        .order-container button i {
+            margin-left: 10px;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .order-container {
+                padding: 20px;
+            }
+
+            .order-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .order-container .form-group input,
+            .order-container .form-group select {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .order-container button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="order-container">
+        <h2>تسجيل أوردر جديد</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="phone1">رقم التليفون الأساسي</label>
+                <div class="input-icon">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone1" placeholder="أدخل رقم التليفون الأساسي" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone2">رقم تليفون إضافي (اختياري)</label>
+                <div class="input-icon">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone2" placeholder="أدخل رقم تليفون إضافي">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="customerName">اسم العميل</label>
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="customerName" placeholder="أدخل اسم العميل (اسمين على الأقل)" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="governorate">المحافظة</label>
+                <select id="governorate" required>
+                    <option value="" disabled selected>اختر المحافظة</option>
+                    <option value="cairo">القاهرة</option>
+                    <option value="alexandria">الإسكندرية</option>
+                    <option value="giza">الجيزة</option>
+                    <option value="sharqia">الشرقية</option>
+                    <option value="dakahlia">الدقهلية</option>
+                    <option value="beheira">البحيرة</option>
+                    <option value="monufia">المنوفية</option>
+                    <option value="qalyubia">القليوبية</option>
+                    <option value="sohag">سوهاج</option>
+                    <option value="asyut">أسيوط</option>
+                    <option value="minya">المنيا</option>
+                    <option value="gharbia">الغربية</option>
+                    <option value="faiyum">الفيوم</option>
+                    <option value="beni_suef">بني سويف</option>
+                    <option value="luxor">الأقصر</option>
+                    <option value="aswan">أسوان</option>
+                    <option value="ismailia">الإسماعيلية</option>
+                    <option value="port_said">بورسعيد</option>
+                    <option value="suez">السويس</option>
+                    <option value="damietta">دمياط</option>
+                    <option value="kafr_el_sheikh">كفر الشيخ</option>
+                    <option value="matruh">مطروح</option>
+                    <option value="north_sinai">شمال سيناء</option>
+                    <option value="south_sinai">جنوب سيناء</option>
+                    <option value="red_sea">البحر الأحمر</option>
+                    <option value="new_valley">الوادي الجديد</option>
+                    <option value="qena">قنا</option>
+                    <option value="6th_of_october">السادس من أكتوبر</option>
+                    <option value="helwan">حلوان</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="city">المدينة</label>
+                <input type="text" id="city" placeholder="أدخل المدينة" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">العنوان بالكامل</label>
+                <input type="text" id="address" placeholder="أدخل العنوان بالكامل" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">سعر المنتج</label>
+                <div class="input-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" id="productPrice" placeholder="أدخل سعر المنتج" required>
+                </div>
+            </div>
+
+            <button type="submit"><i class="fas fa-save"></i> تسجيل الأوردر</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const orderForm = document.getElementById("orderForm");
+
+            // تخزين الأوردرات في localStorage (بيانات دائمة)
+            if (!localStorage.getItem("orders")) {
+                localStorage.setItem("orders", JSON.stringify([]));
+            }
+
+            // تسجيل أوردر جديد
+            orderForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const phone1 = document.getElementById("phone1").value;
+                const phone2 = document.getElementById("phone2").value;
+                const customerName = document.getElementById("customerName").value;
+                const governorate = document.getElementById("governorate").value;
+                const city = document.getElementById("city").value;
+                const address = document.getElementById("address").value;
+                const productPrice = document.getElementById("productPrice").value;
+
+                const order = {
+                    phone1,
+                    phone2,
+                    customerName,
+                    governorate,
+                    city,
+                    address,
+                    productPrice
+                };
+
+                // حفظ البيانات في localStorage
+                const orders = JSON.parse(localStorage.getItem("orders"));
+                orders.push(order);
+                localStorage.setItem("orders", JSON.stringify(orders));
+
+                alert("تم تسجيل الأوردر بنجاح!");
+                window.location.href = "orders.html"; // الانتقال إلى صفحة الأوردرات
+            });
+        });
+    </script>
+</body>
+</html>

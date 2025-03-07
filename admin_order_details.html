@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الأوردر - لوحة الأدمن</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .order-details-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .order-details-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .order-details-container .order-details {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .order-details-container .order-details h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #007BFF;
+        }
+
+        .order-details-container .order-details .detail-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .order-details-container .order-details .detail-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-details-container .order-details .detail-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .order-details-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .order-details-container {
+                padding: 20px;
+            }
+
+            .order-details-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .order-details-container .order-details .detail-item p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="order-details-container">
+        <h2>تفاصيل الأوردر</h2>
+        <div class="order-details">
+            <div id="orderDetails">
+                <!-- سيتم عرض تفاصيل الأوردر هنا -->
+            </div>
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const orderDetails = document.getElementById("orderDetails");
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            const userId = urlParams.get('userId');
+
+            // جلب الأوردرات من localStorage
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            if (orderId !== null && userId !== null) {
+                // تصفية الأوردرات الخاصة بالمستخدم المحدد
+                const userOrders = orders.filter(order => order.userId === userId);
+
+                if (userOrders.length > 0 && orderId < userOrders.length) {
+                    const order = userOrders[orderId];
+
+                    const detailItem = document.createElement("div");
+                    detailItem.classList.add("detail-item");
+
+                    detailItem.innerHTML = `
+                        <p><strong>اسم العميل:</strong> ${order.customerName}</p>
+                        <p><strong>رقم التليفون:</strong> ${order.phone1}</p>
+                        <p><strong>المحافظة:</strong> ${order.governorate}</p>
+                        <p><strong>المدينة:</strong> ${order.city}</p>
+                        <p><strong>العنوان:</strong> ${order.address}</p>
+                        <p><strong>سعر المنتج:</strong> ${order.productPrice} جنيه</p>
+                    `;
+
+                    orderDetails.appendChild(detailItem);
+                } else {
+                    orderDetails.innerHTML = "<p>الأوردر غير موجود.</p>";
+                }
+            } else {
+                orderDetails.innerHTML = "<p>العميل أو الأوردر غير موجود.</p>";
+            }
+        });
+    </script>
+</body>
+</html>

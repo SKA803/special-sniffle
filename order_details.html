@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الأوردر - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .order-details-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .order-details-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .order-details-container .status-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .order-details-container .status-bar .status {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-details-container .status-bar .status.active {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .order-details-container .status-bar .status.completed {
+            background-color: #28a745; /* لون أخضر */
+            color: white;
+        }
+
+        .order-details-container .order-info {
+            text-align: right;
+        }
+
+        .order-details-container .order-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .order-details-container .order-info p strong {
+            color: #007BFF;
+        }
+
+        .order-details-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .order-details-container {
+                padding: 20px;
+            }
+
+            .order-details-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .order-details-container .status-bar .status {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .order-details-container .order-info p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="order-details-container">
+        <h2>تفاصيل الأوردر</h2>
+        <div class="status-bar">
+            <div class="status active">جاري الاستلام</div>
+            <div class="status">تم الاستلام</div>
+            <div class="status">تم التسليم</div>
+        </div>
+        <div class="order-info">
+            <p><strong>تاريخ الاستلام:</strong> 22 فبراير 2025</p>
+            <p><strong>مدة التوصيل:</strong> 48-60 ساعة</p>
+            <p><strong>اسم العميل:</strong> محمد أحمد</p>
+            <p><strong>رقم التليفون:</strong> 01012345678</p>
+            <p><strong>المحافظة:</strong> القاهرة</p>
+            <p><strong>المدينة:</strong> مدينة نصر</p>
+            <p><strong>العنوان:</strong> 123 شارع التحرير</p>
+            <p><strong>سعر المنتج:</strong> 500 جنيه</p>
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+
+            // جلب الأوردرات من localStorage
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            if (orderId !== null && orders[orderId]) {
+                const order = orders[orderId];
+
+                // تحديث تفاصيل الأوردر
+                document.querySelector(".order-info p:nth-child(3)").innerHTML = `<strong>اسم العميل:</strong> ${order.customerName}`;
+                document.querySelector(".order-info p:nth-child(4)").innerHTML = `<strong>رقم التليفون:</strong> ${order.phone1}`;
+                document.querySelector(".order-info p:nth-child(5)").innerHTML = `<strong>المحافظة:</strong> ${order.governorate}`;
+                document.querySelector(".order-info p:nth-child(6)").innerHTML = `<strong>المدينة:</strong> ${order.city}`;
+                document.querySelector(".order-info p:nth-child(7)").innerHTML = `<strong>العنوان:</strong> ${order.address}`;
+                document.querySelector(".order-info p:nth-child(8)").innerHTML = `<strong>سعر المنتج:</strong> ${order.productPrice} جنيه`;
+            } else {
+                alert("الأوردر غير موجود!");
+                window.location.href = "orders.html"; // العودة إلى صفحة الأوردرات
+            }
+        });
+    </script>
+</body>
+</html>

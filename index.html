@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السندباد - الصفحة الرئيسية</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .intro {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            color: white;
+        }
+
+        .intro h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #FF5722;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #E64A19;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background-color: white;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            padding-bottom: 100px; /* المسافة المضافة */
+        }
+
+        .feature-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 3rem;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+
+        .feature-box p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .intro, .features {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .intro h2 {
+                font-size: 1.5rem;
+            }
+
+            .intro p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .feature-box {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .feature-box i {
+                font-size: 2.5rem;
+            }
+
+            .feature-box h3 {
+                font-size: 1.3rem;
+            }
+
+            .feature-box p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .intro h2 {
+                font-size: 1.3rem;
+            }
+
+            .intro p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .feature-box i {
+                font-size: 2rem;
+            }
+
+            .feature-box h3 {
+                font-size: 1.2rem;
+            }
+
+            .feature-box p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>السندباد</h1>
+    </header>
+
+    <section class="intro">
+        <h2>مرحبًا بكم في السندباد</h2>
+        <p>نقدم لكم أفضل الخدمات اللوجستية التي تشمل الاستلام من الباب للباب، التغليف الآمن، طباعة بوليصة الشحن، والتوصيل السريع في جميع أنحاء البلاد.</p>
+        <a href="login.html" class="btn">ابدأ التسجيل</a>
+    </section>
+
+    <section class="features">
+        <!-- بوكس استلام من الباب للباب -->
+        <div class="feature-box">
+            <i class="fas fa-home"></i>
+            <h3>استلام من الباب للباب</h3>
+            <p>نأتي إليك أينما كنت! نوفر خدمة استلام الشحنات من منزلك أو عملك مباشرةً، لتوفر عليك الوقت والجهد.</p>
+        </div>
+
+        <!-- بوكس التغليف الآمن -->
+        <div class="feature-box">
+            <i class="fas fa-box-open"></i>
+            <h3>التغليف الآمن</h3>
+            <p>نستخدم مواد تغليف عالية الجودة لحماية شحناتك من أي تلف أثناء النقل. شحناتك بأمان معنا!</p>
+        </div>
+
+        <!-- بوكس التوصيل السريع -->
+        <div class="feature-box">
+            <i class="fas fa-shipping-fast"></i>
+            <h3>التوصيل السريع</h3>
+            <p>نضمن لك توصيل شحناتك في أسرع وقت ممكن. سرعتنا هي أولويتنا لضمان رضاك التام.</p>
+        </div>
+
+        <!-- بوكس طباعة بوليصة الشحن -->
+        <div class="feature-box">
+            <i class="fas fa-print"></i>
+            <h3>طباعة بوليصة الشحن</h3>
+            <p>نوفر لك طباعة بوليصة الشحن بكل تفاصيلها، لتتبع شحنتك بسهولة واطمئنان.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            // إضافة تفاعل بسيط عند تحميل الصفحة
+            const features = document.querySelectorAll(".feature-box");
+            features.forEach((feature, index) => {
+                setTimeout(() => {
+                    feature.style.opacity = 1;
+                }, index * 300);
+            });
+        });
+    </script>
+</body>
+</html>

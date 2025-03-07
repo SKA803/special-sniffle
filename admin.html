@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الأدمن - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .admin-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .admin-container .users-list {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .admin-container .users-list h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #007BFF;
+        }
+
+        .admin-container .users-list .user-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .admin-container .users-list .user-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-container .users-list .user-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .admin-container .users-list .user-item a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-container .users-list .user-item a:hover {
+            background-color: #005bb5;
+        }
+
+        .admin-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .admin-container {
+                padding: 20px;
+            }
+
+            .admin-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .admin-container .users-list .user-item p {
+                font-size: 0.9rem;
+            }
+
+            .admin-container .users-list .user-item a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>لوحة تحكم الأدمن</h2>
+        <div class="users-list">
+            <h3>المستخدمون المسجلون</h3>
+            <div id="usersList">
+                <!-- سيتم عرض المستخدمين هنا -->
+            </div>
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const usersList = document.getElementById("usersList");
+
+            // جلب بيانات المستخدمين من localStorage
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            if (users.length > 0) {
+                users.forEach((user, index) => {
+                    const userItem = document.createElement("div");
+                    userItem.classList.add("user-item");
+
+                    userItem.innerHTML = `
+                        <p><strong>الاسم:</strong> ${user.fullName}</p>
+                        <p><strong>رقم التليفون:</strong> ${user.phone}</p>
+                        <p><strong>البريد الإلكتروني:</strong> ${user.email || "غير متوفر"}</p>
+                        <p><strong>وسيلة التحصيل:</strong> ${user.paymentMethod}</p>
+                        <a href="admin_dashboard.html?userId=${index}">عرض الأوردرات</a>
+                    `;
+
+                    usersList.appendChild(userItem);
+                });
+            } else {
+                usersList.innerHTML = "<p>لا توجد بيانات مسجلة.</p>";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #007BFF;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-container input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #005bb5;
+        }
+
+        .login-container .links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .login-container .links a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .login-container .links a:hover {
+            text-decoration: underline;
+        }
+
+        .login-container .support-links {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .login-container .support-links a {
+            color: #25D366;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .login-container .support-links a.gmail {
+            color: #D44638;
+        }
+
+        .login-container .support-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+            }
+
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .login-container input {
+                font-size: 0.9rem;
+            }
+
+            .login-container button {
+                font-size: 0.9rem;
+            }
+
+            .login-container .links a {
+                font-size: 0.8rem;
+            }
+
+            .login-container .support-links {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="اسم المستخدم" required>
+            <input type="password" id="password" placeholder="كلمة السر" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+        <div class="links">
+            <a href="register.html">إنشاء حساب جديد</a>
+            <a href="#" id="forgotPassword">نسيت كلمة السر؟</a>
+        </div>
+        <div class="support-links">
+            <p>للمساعدة، تواصل معنا عبر:</p>
+            <a href="https://wa.me/01025718617" target="_blank">واتساب <i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:Sinbad803@gmail.com" class="gmail">جيميل <i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginForm");
+            const forgotPasswordLink = document.getElementById("forgotPassword");
+
+            // تخزين بيانات المستخدمين في localStorage (بيانات دائمة)
+            if (!localStorage.getItem("users")) {
+                localStorage.setItem("users", JSON.stringify([
+                    { username: "user1", password: "pass1" },
+                    { username: "user2", password: "pass2" }
+                ]));
+            }
+
+            // تسجيل الدخول
+            loginForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                const users = JSON.parse(localStorage.getItem("users"));
+                const user = users.find(u => u.username === username && u.password === password);
+
+                if (user) {
+                    alert("تم تسجيل الدخول بنجاح!");
+                    window.location.href = "dashboard.html"; // الانتقال لواجهة المستخدم
+                } else {
+                    alert("اسم المستخدم أو كلمة السر غير صحيحة.");
+                }
+            });
+
+            // نسيت كلمة السر
+            forgotPasswordLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                alert("تواصل مع فريق الدعم من خلال واتساب أو جيميل لإعادة تعيين كلمة السر.");
+            });
+        });
+    </script>
+</body>
+</html>

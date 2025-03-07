@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأوردرات المسجلة - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .orders-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .orders-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .orders-container .orders-list {
+            text-align: right;
+        }
+
+        .orders-container .orders-list .order-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .orders-container .orders-list .order-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .orders-container .orders-list .order-item h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #007BFF;
+        }
+
+        .orders-container .orders-list .order-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .orders-container .orders-list .order-item a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .orders-container .orders-list .order-item a:hover {
+            background-color: #005bb5;
+        }
+
+        .orders-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .orders-container {
+                padding: 20px;
+            }
+
+            .orders-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .orders-container .orders-list .order-item h3 {
+                font-size: 1rem;
+            }
+
+            .orders-container .orders-list .order-item p {
+                font-size: 0.9rem;
+            }
+
+            .orders-container .orders-list .order-item a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="orders-container">
+        <h2>الأوردرات المسجلة</h2>
+        <div class="orders-list" id="ordersList">
+            <!-- سيتم عرض الأوردرات هنا -->
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const ordersList = document.getElementById("ordersList");
+
+            // جلب الأوردرات من localStorage
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = "<p>لا توجد أوردرات مسجلة حتى الآن.</p>";
+            } else {
+                orders.forEach((order, index) => {
+                    const orderItem = document.createElement("div");
+                    orderItem.classList.add("order-item");
+
+                    orderItem.innerHTML = `
+                        <h3>الأوردر #${index + 1}</h3>
+                        <p><strong>اسم العميل:</strong> ${order.customerName}</p>
+                        <p><strong>رقم التليفون:</strong> ${order.phone1}</p>
+                        <p><strong>المحافظة:</strong> ${order.governorate}</p>
+                        <p><strong>المدينة:</strong> ${order.city}</p>
+                        <p><strong>سعر المنتج:</strong> ${order.productPrice} جنيه</p>
+                        <a href="order_details.html?orderId=${index}">تفاصيل الأوردر</a>
+                    `;
+
+                    ordersList.appendChild(orderItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

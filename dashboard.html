@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .dashboard-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .dashboard-container .welcome-message {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-container .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dashboard-container .buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF; /* لون أزرق */
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .dashboard-container .buttons a:hover {
+            background-color: #005bb5; /* لون أزرق غامق */
+            transform: translateY(-2px);
+        }
+
+        .dashboard-container .buttons a i {
+            margin-left: 10px;
+        }
+
+        .dashboard-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .dashboard-container {
+                padding: 20px;
+            }
+
+            .dashboard-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .dashboard-container .buttons a {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>لوحة التحكم</h2>
+        <div class="welcome-message">
+            <p>مرحبًا، <span id="username">[اسم المستخدم]</span>!</p>
+        </div>
+        <div class="buttons">
+            <a href="new_order.html"><i class="fas fa-plus"></i> تسجيل أوردر جديد</a>
+            <a href="orders.html"><i class="fas fa-list"></i> الأوردرات المسجلة</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            // جلب اسم المستخدم من localStorage
+            const users = JSON.parse(localStorage.getItem("users"));
+            if (users && users.length > 0) {
+                const lastUser = users[users.length - 1];
+                document.getElementById("username").textContent = lastUser.fullName;
+            }
+        });
+    </script>
+</body>
+</html>

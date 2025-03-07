@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - السندباد</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS داخل الصفحة */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8; /* لون خلفية فاتح */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .settings-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .settings-container h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #007BFF; /* لون أزرق */
+            text-align: center;
+        }
+
+        .settings-container .user-info {
+            text-align: right;
+        }
+
+        .settings-container .user-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .settings-container .user-info p strong {
+            color: #007BFF;
+        }
+
+        .settings-container .edit-button {
+            margin-top: 20px;
+        }
+
+        .settings-container .edit-button button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .settings-container .edit-button button:hover {
+            background-color: #005bb5;
+            transform: translateY(-2px);
+        }
+
+        .settings-container footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Media Queries للتجاوب مع الشاشات */
+        @media (max-width: 480px) {
+            .settings-container {
+                padding: 20px;
+            }
+
+            .settings-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .settings-container .user-info p {
+                font-size: 0.9rem;
+            }
+
+            .settings-container .edit-button button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+    <!-- خط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="settings-container">
+        <h2>الإعدادات</h2>
+        <div class="user-info" id="userInfo">
+            <!-- سيتم عرض بيانات المستخدم هنا -->
+        </div>
+        <div class="edit-button">
+            <button onclick="window.location.href='edit_profile.html'"><i class="fas fa-edit"></i> تعديل البيانات</button>
+        </div>
+        <footer>
+            <p>© 2025 السندباد. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript داخل الصفحة
+        document.addEventListener("DOMContentLoaded", function () {
+            const userInfo = document.getElementById("userInfo");
+
+            // جلب بيانات المستخدم من localStorage
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            if (users.length > 0) {
+                const lastUser = users[users.length - 1];
+
+                userInfo.innerHTML = `
+                    <p><strong>الاسم:</strong> ${lastUser.fullName}</p>
+                    <p><strong>العنوان:</strong> ${lastUser.address}</p>
+                    <p><strong>رقم التليفون:</strong> ${lastUser.phone}</p>
+                    <p><strong>البريد الإلكتروني:</strong> ${lastUser.email || "غير متوفر"}</p>
+                    <p><strong>وسيلة التحصيل:</strong> ${lastUser.paymentMethod}</p>
+                `;
+            } else {
+                userInfo.innerHTML = "<p>لا توجد بيانات مسجلة.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
