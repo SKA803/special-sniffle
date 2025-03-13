@@ -224,6 +224,13 @@
             const paymentMethod = document.getElementById('payment-method').value;
             const paymentType = document.getElementById('payment-type').value;
 
+            // Validate phone number
+            if (!/^\d{11}$/.test(phone)) {
+                alert('رقم الهاتف يجب أن يتكون من 11 رقمًا');
+                return;
+            }
+
+            // Validate password match
             if (password !== confirmPassword) {
                 alert('كلمة السر غير متطابقة');
                 return;
