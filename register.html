@@ -5,14 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب</title>
     <style>
-        /* ... (النمط الحالي يبقى كما هو) ... */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #f1f1f1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #f1f1f1;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            outline: none;
+            transition: background 0.3s, border 0.3s;
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: #ddd;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                max-width: 90%;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .form-group input, button {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                max-width: 95%;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .form-group input {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>إنشاء حساب</h2>
         <form id="signup-form">
-            <!-- ... (النموذج الحالي يبقى كما هو) ... -->
+            <div class="form-group">
+                <label for="username">اسم المستخدم (اسمين)</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">رقم التليفون (11 رقم)</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" required>
+            </div>
+            <div class="form-group">
+                <label for="address">العنوان بالكامل</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="optional">خانة إضافية (اختياري)</label>
+                <input type="text" id="optional" name="optional">
+            </div>
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة السر (8 أحرف على الأقل)</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+                <span toggle="#password" class="toggle-password">👁️</span>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">تأكيد كلمة السر</label>
+                <input type="password" id="confirm-password" name="confirm-password" minlength="8" required>
+            </div>
+            <div class="form-group">
+                <label>طريقة التحصيل</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="">اختر</option>
+                    <option value="daily">تحصيل يومي</option>
+                    <option value="weekly">تحصيل أسبوعي</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>وسيلة الدفع</label>
+                <select id="payment-type" name="payment-type" required>
+                    <option value="">اختر</option>
+                    <option value="cash">محفظة كاش</option>
+                    <option value="instapay">انستا بي</option>
+                    <option value="bank">حساب بنكي</option>
+                </select>
+            </div>
+            <div class="form-group" id="payment-details">
+                <!-- تفاصيل الدفع ستظهر هنا بناءً على الاختيار -->
+            </div>
+            <div class="button-container">
+                <button type="submit">إنشاء حساب</button>
+            </div>
         </form>
     </div>
 
